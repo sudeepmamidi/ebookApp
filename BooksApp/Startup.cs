@@ -1,3 +1,5 @@
+using BooksApp.Models;
+using BooksApp.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -8,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace BooksApp
 {
@@ -24,6 +28,7 @@ namespace BooksApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<BooksDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BooksDbContextConnection")));
             services.AddRazorPages();
         }
 

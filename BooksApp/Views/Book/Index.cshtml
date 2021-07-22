@@ -1,0 +1,63 @@
+﻿@model IEnumerable<BooksApp.Models.Books>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">Books Index Page</h1>
+
+<div class="container">
+    <p>
+        <a asp-action="Create" class="btn btn-outline-warning text-dark">Create Book</a>
+    </p>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Bookid)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Bookname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Bookauthor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Bookdescription)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.price)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Bookid)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Bookname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Bookauthor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Bookdescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.price)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Bookid }, new { @class = "btn btn-primary" }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Bookid }, new { @class = "btn btn-success" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Bookid }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
